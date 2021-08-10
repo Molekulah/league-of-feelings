@@ -1,90 +1,93 @@
-const express = require("express");
+const express = require('express');
+const cors = require('cors');
 
 const app = express();
 
 const partidaFake = [
   {
-    data: "32/13/0000",
+    data: '32/13/0000',
     kda: {
-      luana: "0/10/150",
-      bruno: "100/0/100",
-      cassio: "10/5/2",
+      luana: '0/10/150',
+      bruno: '100/0/100',
+      cassio: '10/5/2',
     },
     champion: {
-      luana: "cerafina",
-      bruno: "Mestre do Q",
-      cassio: "Sapo",
+      luana: 'cerafina',
+      bruno: 'Mestre do Q',
+      cassio: 'Sapo',
     },
     feeling: {
-      luana: "😭",
-      bruno: "😁",
-      cassio: "😁",
+      luana: '😭',
+      bruno: '😁',
+      cassio: '😁',
     },
-    totalfeelings: "😁",
+    totalfeelings: '😁',
   },
   {
-    data: "32/13/0000",
+    data: '32/13/0000',
     kda: {
-      luana: "0/10/150",
-      bruno: "100/0/100",
-      cassio: "10/5/2",
+      luana: '0/10/150',
+      bruno: '100/0/100',
+      cassio: '10/5/2',
     },
     champion: {
-      luana: "cerafina",
-      bruno: "Mestre do Q",
-      cassio: "Sapo",
+      luana: 'cerafina',
+      bruno: 'Mestre do Q',
+      cassio: 'Sapo',
     },
     feeling: {
-      luana: "😭",
-      bruno: "😁",
-      cassio: "😁",
+      luana: '😭',
+      bruno: '😁',
+      cassio: '😁',
     },
-    totalfeelings: "😁",
+    totalfeelings: '😁',
   },
   {
-    data: "32/13/0000",
+    data: '32/13/0000',
     kda: {
-      luana: "0/10/150",
-      bruno: "100/0/100",
-      cassio: "10/5/2",
+      luana: '0/10/150',
+      bruno: '100/0/100',
+      cassio: '10/5/2',
     },
     champion: {
-      luana: "cerafina",
-      bruno: "Mestre do Q",
-      cassio: "Sapo",
+      luana: 'cerafina',
+      bruno: 'Mestre do Q',
+      cassio: 'Sapo',
     },
     feeling: {
-      luana: "😭",
-      bruno: "😁",
-      cassio: "😁",
+      luana: '😭',
+      bruno: '😁',
+      cassio: '😁',
     },
-    totalfeelings: "😁",
+    totalfeelings: '😁',
   },
   {
-    data: "32/13/0000",
+    data: '32/13/0000',
     kda: {
-      luana: "0/10/150",
-      bruno: "100/0/100",
-      cassio: "10/5/2",
+      luana: '0/10/150',
+      bruno: '100/0/100',
+      cassio: '10/5/2',
     },
     champion: {
-      luana: "cerafina",
-      bruno: "Mestre do Q",
-      cassio: "Sapo",
+      luana: 'cerafina',
+      bruno: 'Mestre do Q',
+      cassio: 'Sapo',
     },
     feeling: {
-      luana: "😭",
-      bruno: "😁",
-      cassio: "😁",
+      luana: '😭',
+      bruno: '😁',
+      cassio: '😁',
     },
-    totalfeelings: "😁",
+    totalfeelings: '😁',
   },
 ];
 
-app.get("/partidas", (req, res) => {
+app.use(cors());
+
+app.get('/partidas', (req, res) => {
   return res.send(partidaFake);
 });
 
 app.listen(8080, () => {
-  console.log("servidor iniciado");
+  console.log('servidor iniciado');
 });
