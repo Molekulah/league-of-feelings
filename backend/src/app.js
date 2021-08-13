@@ -18,7 +18,11 @@ const getMatchiesData = async (matchIds) => {
         if (
           pi.player.summonerName === "Ca9" ||
           pi.player.summonerName === "luahp" ||
-          pi.player.summonerName === "fast blades"
+          pi.player.summonerName === "fast blades" ||
+          pi.player.summonerName === "Ocalor" ||
+          pi.player.summonerName === "Marimarizinha" ||
+          pi.player.summonerName === "PH 30cm" ||
+          pi.player.summonerName === "To saindo"
         ) {
           return true;
         } else {
@@ -39,20 +43,54 @@ const getMatchiesData = async (matchIds) => {
 
     const kdas = participantInfos.map((pf) => {
       const { name } = participants.find((p) => p.id === pf.participantId);
+      const pof = (
+        (pf.stats.kills + pf.stats.assists) /
+        pf.stats.deaths
+      ).toFixed(2);
+
+      const getFeeling = () => {
+        if (pof > 3 && pof < 5) return "happy";
+        if (pof >= 5) return "so happy";
+        if (pof < 3 && pof > 1) return "sad";
+        if (pof <= 1) return "so sad";
+        return "neutral";
+      };
+
+      const feeling = getFeeling();
 
       return {
         name: name,
         lane: pf.timeline.lane,
-        id: pf.participantId,
+        win: pf.stats.win,
         kills: pf.stats.kills,
         deaths: pf.stats.deaths,
         assists: pf.stats.assists,
+        farm: pf.stats.totalMinionsKilled + pf.stats.neutralMinionsKilled,
+
+        pof,
+        feeling,
       };
     });
+
+    const getTotalFeelings = () => {
+      if (finalPof > 3 && finalPof < 5) return "happy";
+      if (finalPof >= 5) return "so happy";
+      if (finalPof < 3 && finalPof > 1) return "sad";
+      if (finalPof <= 1) return "so sad";
+      return "neutral";
+    };
+
+    const totalPof = kdas
+      .reduce((acm, { pof }) => acm + Number(pof), 0)
+      .toFixed(2);
+    const finalPof = (totalPof / 3).toFixed(2);
+    const totalFeelings = getTotalFeelings();
 
     return {
       matchId: match.gameId,
       kdas: kdas,
+      finalPof,
+      totalFeelings,
     };
   });
 
