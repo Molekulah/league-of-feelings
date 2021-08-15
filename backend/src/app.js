@@ -44,8 +44,8 @@ const getMatchiesData = async (matchIds) => {
     const kdas = participantInfos.map((pf) => {
       const { name } = participants.find((p) => p.id === pf.participantId);
       const pof = (
-        (pf.stats.kills + pf.stats.assists) /
-        pf.stats.deaths
+        (pf.stats.kills + pf.stats.assists) / pf.stats.deaths +
+        (pf.stats.totalMinionsKilled + pf.stats.neutralMinionsKilled) * 0.008
       ).toFixed(2);
 
       const getFeeling = () => {
