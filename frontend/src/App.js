@@ -1,13 +1,24 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 
-// import { api } from './services/api';
+import { api } from './services/api';
 import './App.css';
+
 const App = () => {
-  useEffect(() => {}, []);
+  const [partidas, setPartidas] = useState([]);
+
+  useEffect(() => {
+    const fetchMatchies = async () => {
+      const { data } = await api.get('/partidas');
+      console.log(data.matchies);
+      setPartidas(data.matchies);
+    };
+
+    fetchMatchies();
+  }, []);
 
   return (
     <div
-      className=" text-center text-light bg-dark"
+      className=" cover-container  text-center text-light w-100 h-100 mx-auto flex-column bg-dark"
       style={{ height: '100vh' }}
     >
       <div className="px-4 py-5 text-center">
@@ -21,50 +32,56 @@ const App = () => {
         </div>
       </div>
 
-      <div className="container px-4">
-        <div style={{ fontSize: 125 }}>😩</div>
-
-        <div className="row ">
-          <div className=" bg-danger col-md-4 offset-md-4">
-            <p className="h2" style={{ margin: 20 }}>
-              TRISTEZA
-            </p>
-          </div>
+      {partidas?.map(partida => (
+        <div className="container " key={partida.matchId}>
+          {
+            <div className="container">
+              <div className="row ">
+                <div
+                  className={` ${
+                    partida.totalFeelings === 'sad' ? 'bg-danger' : 'bg-primary'
+                  } align-items-center justify-content-center d-flex `}
+                >
+                  <p className="h2" style={{ margin: 20 }}>
+                    {partida.totalFeelings === 'so sad' && 'TRISTEZA'}
+                    {partida.totalFeelings === 'sad' && 'TRISTEZA'}
+                    {partida.totalFeelings === 'so happy' && 'FELICIDADE'}
+                    {partida.totalFeelings === 'happy' && 'FELICIDADE'}
+                  </p>
+                  <br></br>
+                  <div style={{ fontSize: 50 }}>{partida.totalFeelings}</div>
+                </div>
+              </div>
+              <table
+                className={` ${
+                  partida.totalFeelings === 'sad'
+                    ? 'table-danger'
+                    : 'table-primary'
+                } table  `}
+              >
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Lane</th>
+                    <th scope="col">KDA</th>
+                    <th scope="col">Feelings</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {partida?.kdas?.map(kda => (
+                    <tr key={kda.name}>
+                      <th scope="row">{kda.name}</th>
+                      <td>{kda.lane}</td>
+                      <td>{`${kda.kills}/${kda.deaths}/${kda.assists}`}</td>
+                      <td>{kda.feeling}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          }
         </div>
-      </div>
-
-      <div className="container p-3 ">
-        <table className="table table-danger ">
-          <thead>
-            <tr>
-              <th scope="col">#</th>
-              <th scope="col">Lane</th>
-              <th scope="col">KDA</th>
-              <th scope="col">Feelings</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <th scope="row">B</th>
-              <td>Jungle</td>
-              <td>*/*/*</td>
-              <td>😢</td>
-            </tr>
-            <tr>
-              <th scope="row">C</th>
-              <td> Adcarry</td>
-              <td>*/*/*</td>
-              <td>😊</td>
-            </tr>
-            <tr>
-              <th scope="row">L</th>
-              <td>Support</td>
-              <td>*/*/*</td>
-              <td>😢</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+      ))}
     </div>
   );
 };
