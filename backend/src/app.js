@@ -61,6 +61,7 @@ const getMatchiesData = async (matchIds) => {
       return {
         name: name,
         lane: pf.timeline.lane,
+        role: pf.timeline.role,
         win: pf.stats.win,
         kills: pf.stats.kills,
         deaths: pf.stats.deaths,
