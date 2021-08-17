@@ -49,11 +49,11 @@ const getMatchiesData = async (matchIds) => {
       ).toFixed(2);
 
       const getFeeling = () => {
-        if (pof > 3 && pof < 5) return "happy";
-        if (pof >= 5) return "so happy";
-        if (pof < 3 && pof > 1) return "sad";
-        if (pof <= 1) return "so sad";
-        return "neutral";
+        if (pof > 3 && pof < 5) return "😀";
+        if (pof >= 5) return "😁";
+        if (pof < 3 && pof > 1) return "🙁";
+        if (pof <= 1) return "😭";
+        return "😐";
       };
 
       const feeling = getFeeling();
@@ -74,11 +74,11 @@ const getMatchiesData = async (matchIds) => {
     });
 
     const getTotalFeelings = () => {
-      if (finalPof > 3 && finalPof < 5) return "happy";
-      if (finalPof >= 5) return "so happy";
-      if (finalPof < 3 && finalPof > 1) return "sad";
-      if (finalPof <= 1) return "so sad";
-      return "neutral";
+      if (finalPof > 3 && finalPof < 5) return "😀";
+      if (finalPof >= 5) return "😁";
+      if (finalPof < 3 && finalPof > 1) return "🙁";
+      if (finalPof <= 1) return "😭";
+      return "😐";
     };
 
     const totalPof = kdas
@@ -104,7 +104,7 @@ app.get("/partidas", async (req, res) => {
   try {
     const { data } = await riotApi.get(
       "/lol/match/v4/matchlists/by-account/CvwfYXtrQgvQ6ilFa4PLAUD9lFGgBu0usOpb1-Re_o_dRxc",
-      { params: { beginIndex: 0, endIndex: 10 } }
+      { params: { beginIndex: 0, endIndex: 20 } }
     );
 
     const matches = data.matches;
