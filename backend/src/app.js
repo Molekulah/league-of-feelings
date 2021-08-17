@@ -102,7 +102,7 @@ app.use(cors());
 app.get("/partidas", async (req, res) => {
   try {
     const { data } = await riotApi.get(
-      "/lol/match/v4/matchlists/by-account/C2IofxYQuHjkF9Aw_fJ7WSelXAnech1CoDKJlodngAhsk0I",
+      "/lol/match/v4/matchlists/by-account/CvwfYXtrQgvQ6ilFa4PLAUD9lFGgBu0usOpb1-Re_o_dRxc",
       { params: { beginIndex: 0, endIndex: 10 } }
     );
 
