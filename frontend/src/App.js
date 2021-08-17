@@ -39,7 +39,7 @@ const App = () => {
               <div className="row ">
                 <div
                   className={` ${
-                    partida.totalFeelings === "sad" ? "bg-danger" : "bg-primary"
+                    partida.totalFeelings === "🙁" ? "bg-danger" : "bg-primary"
                   } align-items-center justify-content-center d-flex `}
                 >
                   <p className="h2" style={{ margin: 20 }}>
@@ -54,7 +54,7 @@ const App = () => {
               </div>
               <table
                 className={` ${
-                  partida.totalFeelings === "sad"
+                  partida.totalFeelings === "🙁"
                     ? "table-danger"
                     : "table-primary"
                 } table  `}
