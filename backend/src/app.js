@@ -104,7 +104,7 @@ app.get("/partidas", async (req, res) => {
   try {
     const { data } = await riotApi.get(
       "/lol/match/v4/matchlists/by-account/CvwfYXtrQgvQ6ilFa4PLAUD9lFGgBu0usOpb1-Re_o_dRxc",
-      { params: { beginIndex: 0, endIndex: 20 } }
+      { params: { beginIndex: 0, endIndex: 15 } }
     );
 
     const matches = data.matches;

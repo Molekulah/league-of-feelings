@@ -9,7 +9,7 @@ const App = () => {
   useEffect(() => {
     const fetchMatchies = async () => {
       const { data } = await api.get("/partidas");
-      console.log(data.matchies);
+      console.log(data);
       setPartidas(data.matchies);
     };
 
@@ -65,6 +65,7 @@ const App = () => {
                     <th scope="col">Lane</th>
                     <th scope="col">KDA</th>
                     <th scope="col">Feelings</th>
+                    <th scope="col">POF</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -74,6 +75,7 @@ const App = () => {
                       <td>{kda.lane}</td>
                       <td>{`${kda.kills}/${kda.deaths}/${kda.assists}`}</td>
                       <td>{kda.feeling}</td>
+                      <td>{kda.pof}</td>
                     </tr>
                   ))}
                 </tbody>
